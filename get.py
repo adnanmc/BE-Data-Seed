@@ -7,15 +7,15 @@ import traceback
 from collections import OrderedDict
 
 # request drop location
-stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_receive')
+stageSend = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
 
 # response file location
-stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_send')
+stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
 
 # current directory
 currentDirectory = Path(os.getcwd())
 
-currentDate = '08JUN18'
+currentDate = '23JUN18'
 
 
 # ############################## functions ##########################
