@@ -4,8 +4,10 @@
   "description": "",
   "main": "filter.js",
   "dependencies": {
-    "voca": "^1.4.0",
-    "json-to-csv": "^1.0.0"
+    "fs-extra": "^6.0.1",
+    "json-to-csv": "^1.0.0",
+    "moment": "^2.22.2",
+    "voca": "^1.4.0"
   },
   "devDependencies": {},
   "scripts": {

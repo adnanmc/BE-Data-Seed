@@ -15,7 +15,7 @@ stageReceive = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
 # current directory
 currentDirectory = Path(os.getcwd())
 
-currentDate = '23JUN18'
+currentDate = '26JUN18'
 
 
 # ############################## functions ##########################
