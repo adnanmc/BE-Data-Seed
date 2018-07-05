@@ -1,6 +1,6 @@
 #!python 3.6.2 or greater
 # import all necessary packages
-import datetime, csv, os, shutil, time, fnmatch, sys, json
+import datetime, csv, os, shutil, time, fnmatch, sys, json, re
 from pathlib import Path
 from collections import OrderedDict
 
@@ -20,6 +20,16 @@ with open('config.json') as json_file:
     data = json.load(json_file)
     env = data['env']
     tDateString = data['targetDate']
+    if env != 'stg1' and env != 'stg2' and env != 'stg3':
+        print(f'Make sure "env" is set to "stg1" or "stg2" or "stg3"')
+        print(f'Invalid "env" data on config.json')
+        sys.exit("Stopping script .......")
+    pattern=r'(([0-2]\d{1})|([3][01]{1}))(JAN|FEB|MAR|APR|MAY|JUN|JUL|AUG|SEP|OCT|NOV|DEC)(\d)(\d)'
+    datePattern = re.compile(pattern)
+    if not datePattern.match(tDateString):
+        print(f'Make sure "targetDate" is set using format "DDMMMYY". Month should be uppercase!! ex: 02JUN18')
+        print(f'Invalid "targetDate" data on config.json')
+        sys.exit("Stopping script .......")
     tDate = datetime.datetime.strptime(tDateString,'%d%b%y')
     currentDate = tDate.strftime('%d%b%y').upper()
     if env == 'stg1':
