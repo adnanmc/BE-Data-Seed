@@ -70,7 +70,7 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
       adh004String = f'ADH004_{current_date}'
       request_file.close()
       print(f' Sending adhoc 4 request using: {adh004String}')
-      time.sleep(15)
+      time.sleep(20)
     # check if the file exist
     receivedFiles = os.listdir(receive_folder)
     receivePattern = f'MCEG_DATA_ADHOC4_{timeStamp}*.csv'
