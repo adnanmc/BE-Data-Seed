@@ -101,14 +101,14 @@ print(f'Next step will start on {nextStepTime}')
 time.sleep(1800)
 
 
-step2_ETD_target_day(env, preveousDate)
+step2_ETD_target_day(env, targetDate)
 nextStepTime = (datetime.datetime.now() + datetime.timedelta(minutes=30)).strftime('%b-%d-%Y | %I:%M %p')
 print(f'Waiting 30 min for all target day: {targetDate} flights to have 15 min ETD delay added')
 print(f'Next step will start on {nextStepTime}')
 time.sleep(1800)
 
 
-step3_OOOI_target_day(env, preveousDate)
+step3_OOOI_target_day(env, targetDate)
 nextStepTime = (datetime.datetime.now() + datetime.timedelta(minutes=30)).strftime('%b-%d-%Y | %I:%M %p')
 print(f'Waiting 30 min for all target day: {targetDate} flights to have OOOI times added')
 print(f'This step will finish on {nextStepTime}')
