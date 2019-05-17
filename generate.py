@@ -60,7 +60,7 @@ def check_if_folder_exist(location):
 
 
 # check for response csv, if exist copy to current directory for parsing
-def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_directory, current_date, outputFileName):
+def call_adhoc_4_and_get_filtered_tail_num_untouched_flight_data_csv(receive_folder, send_folder, local_directory, current_date, outputFileName='filtered_data/filtered'):
     # note that repeat is needed since the adhoc processor sometimes does not return csv.
     # get current timestamp
     sendPattern = f'MCEG_DATA*.txt'
@@ -178,16 +178,13 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
             data = json.load(f)
             filteredData = []
             for x in data:
-                if (x['STDudt'].strip() < x['ETDudt'].strip() 
-                and x['OUTudt'].strip() != '' 
-                and x['OFFudt'].strip() != ''
-                and x['ONudt'].strip() != ''
-                and x['INudt'].strip() != ''
+                if (x['sequence'].strip() == '10' 
+                and x['tailNumber'].strip() not in ignoreTail
                 and x['tailNumber'].strip().startswith('-') == False):
                     filteredData.append(x)
 
 
-            with open('filtered_data/filtered.csv', 'w+', newline='') as csvfile:
+            with open(f'{outputFileName}.csv', 'w+', newline='') as csvfile:
                 writer = csv.writer(csvfile)
                 writer.writerow(['recordStatus',
                                 'lastDateModified',
@@ -326,8 +323,13 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
                                     flight['STOSetByUser'],
                                     flight['STISetByUser'],
                                     flight['CTFlightNumber']])
-                print('Finished filtering flights. Check filtered.csv')
+                print(f'Finished filtering flights. Check {outputFileName}.csv')
+                with open(f'{outputFileName}.csv') as f:
+                    reader = csv.DictReader(f)
+                    rows = list(reader)
 
+                with open(f'{outputFileName}.json', 'w') as f:
+                    json.dump(rows, f)
     else:
         # if file is not available abort the script
         print(f'Did not find csv file for adhoc 4')
@@ -337,20 +339,13 @@ def call_adhoc_4_and_check_for_response_csv(receive_folder, send_folder, local_d
 check_if_folder_exist(stageReceive)
 
 # taking data for day before the target date
-call_adhoc_4_and_filter_tail(stageReceive,stageSend,currentDirectory,preveousDate,'DATA/dayBefore')
+call_adhoc_4_and_get_filtered_tail_num_untouched_flight_data_csv(stageReceive,stageSend,currentDirectory,preveousDate,'DATA/dayBefore')
 
 # create OOOI for all the flights except ignored tails
-with open('DATA/beforeData.json') as f:
+with open('DATA/dayBefore.json') as f:
             data = json.load(f)
             filteredData = []
             for x in data:
-                if (x['sequence'].strip() == '10' 
-                and x['tailNumber'].strip() not in ignoreTail
-                and x['tailNumber'].strip().startswith('-') == False):
-                    filteredData.append(x)
-                    print(x['tailNumber'].strip())
+                print(x['tailNumber'].strip())
 
 
-x['sequence'].strip() == '10' 
-                and x['tailNumber'].strip() not in ignoreTail
-                and x['tailNumber'].strip().startswith('-') == False):
