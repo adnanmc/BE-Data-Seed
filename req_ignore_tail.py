@@ -490,7 +490,8 @@ with open('DATA/targetDay.json') as f:
         origin = x['origin'].strip()
         destination = x['destination'].strip()
         stdUTC = x['STDudt'].strip()
-        outUTC = stdUTC
+        outUTC = (datetime.datetime.strptime(stdUTC, '%H%M') +
+                  datetime.timedelta(minutes=15)).strftime(format='%H%M')
         outAdhocString = f'ADH016_{flightNum}{utcOriginDate}{origin}{destination}{stdUTC}OUT{outUTC}'
         timeStamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -509,9 +510,10 @@ with open('DATA/targetDay.json') as f:
         origin = x['origin'].strip()
         destination = x['destination'].strip()
         stdUTC = x['STDudt'].strip()
-        outUTC = stdUTC
+        outUTC = (datetime.datetime.strptime(stdUTC, '%H%M') +
+                  datetime.timedelta(minutes=15)).strftime(format='%H%M')
         offUTC = (datetime.datetime.strptime(stdUTC, '%H%M') +
-                  datetime.timedelta(minutes=5)).strftime(format='%H%M')
+                  datetime.timedelta(minutes=20)).strftime(format='%H%M')
         offAdhocString = f'ADH016_{flightNum}{utcOriginDate}{origin}{destination}{stdUTC}OFF{outUTC}{offUTC}'
         timeStamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -532,7 +534,7 @@ with open('DATA/targetDay.json') as f:
         stdUTC = x['STDudt'].strip()
         staUTC = x['STAudt'].strip()
         onUTC = (datetime.datetime.strptime(staUTC, '%H%M') +
-                  datetime.timedelta(minutes=-5)).strftime(format='%H%M')
+                  datetime.timedelta(minutes=10)).strftime(format='%H%M')
         onAdhocString = f'ADH016_{flightNum}{utcOriginDate}{origin}{destination}{stdUTC}ON_{onUTC}'
         timeStamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
@@ -553,9 +555,9 @@ with open('DATA/targetDay.json') as f:
         destination = x['destination'].strip()
         stdUTC = x['STDudt'].strip()
         onUTC = (datetime.datetime.strptime(staUTC, '%H%M') +
-                  datetime.timedelta(minutes=-5)).strftime(format='%H%M')
+                  datetime.timedelta(minutes=10)).strftime(format='%H%M')
         inUTC = (datetime.datetime.strptime(staUTC, '%H%M') +
-                  datetime.timedelta(minutes=0)).strftime(format='%H%M')
+                  datetime.timedelta(minutes=15)).strftime(format='%H%M')
         inAdhocString = f'ADH016_{flightNum}{utcOriginDate}{origin}{destination}{stdUTC}IN_{onUTC}{inUTC}'
         timeStamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 
