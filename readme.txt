@@ -13,7 +13,7 @@ Edit and save 'config.json' based on your env and target date. Date format used 
 
 3:
 If targeting the whole plot, open command line and run 'python req.py'. It will take 90 min to finish.
-If ignoring tail listed in config.json, open command line and run 'python req_ignore_tail.py'. It will take 90 min to finish.
+If ignoring tail listed in config.json, open command line and run 'python req_ignore_tail.py'. It will take 3 hour (plus 30 min wait for flight domain update) to finish.
 
 4:
 Login to Movement Control see if any flight got missed. If missed fill out OUT OFF ON IN for those flights manually.
