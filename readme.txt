@@ -9,9 +9,11 @@ Make sure target date and its previous day have incremental load completed + no 
 
 2:
 Edit and save 'config.json' based on your env and target date. Date format used is DDMMMYY example: 07JUN18 (must be uppercase).
+"ignoreTail" contains the tail number script will ignore. Must use "", to add more tail number
 
 3:
-Open command line and run 'python req.py'. It will take 90 min to finish.
+If targeting the whole plot, open command line and run 'python req.py'. It will take 90 min to finish.
+If ignoring tail listed in config.json, open command line and run 'python req_ignore_tail.py'. It will take 90 min to finish.
 
 4:
 Login to Movement Control see if any flight got missed. If missed fill out OUT OFF ON IN for those flights manually.

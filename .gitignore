@@ -1,1 +1,10 @@
-node_modules
+sampleOUT
+sampleOFF
+sampleON
+sampleIN
+sampleETD
+afterOUT
+afterOFF
+afterON
+afterIN
+tailNum.txt
