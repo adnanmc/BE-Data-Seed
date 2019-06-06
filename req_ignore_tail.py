@@ -9,11 +9,9 @@ import fnmatch
 import sys
 import json
 import re
-import urllib3
 import json
 from pathlib import Path
 from collections import OrderedDict
-http = urllib3.PoolManager()
 # current directory
 currentDirectory = Path(os.getcwd())
 
