@@ -567,5 +567,9 @@ with open('DATA/targetDay.json') as f:
         request_file.close()
     time.sleep(1200)
 
+# cleanup csv folder after the script run where adhocprocessor could not find the flight.
+for csvfile in os.listdir(stageReceive):
+    if fnmatch.fnmatch(csvfile, 'MCEG_BE_TEST_DATA_ADHOC16*.csv'):
+        os.remove(f'{stageReceive}/{csvfile}')
 print('Finished sending requests.')
 print('Important!! Please login to Movement Control to manually add OOOI values to any flight that may be missed!')
