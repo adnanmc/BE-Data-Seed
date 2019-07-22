@@ -2,8 +2,8 @@ import json, datetime, time, os, sys, re
 from pathlib import Path
 
 # all const
-stg1DropLocation = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_receive')
-stg1ReceiveLocation = Path('//gscfile01/SharedFile/QA_MVC/STG1/adh_send')
+stg1DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg1/QA_MVC/adh_receive')
+stg1ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg1/QA_MVC/adh_send')
 stg2DropLocation = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_receive')
 stg2ReceiveLocation = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_send')
 stg3DropLocation = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
