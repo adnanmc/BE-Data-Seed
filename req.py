@@ -4,11 +4,11 @@ from pathlib import Path
 # all const
 stg1DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg1/QA_MVC/adh_receive')
 stg1ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg1/QA_MVC/adh_send')
-stg2DropLocation = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_receive')
-stg2ReceiveLocation = Path('//gscfile01/SharedFile/QA_MVC/STG2/adh_send')
-stg3DropLocation = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_receive')
-stg3ReceiveLocation = Path('//gscfile01/SharedFile/QA_MVC/STG3/adh_send')
-baseFolder = Path('//gscfile01/SharedFile/QA_MVC')
+stg2DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg2/QA_MVC/adh_receive')
+stg2ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg2/QA_MVC/adh_send')
+stg3DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg3/QA_MVC/adh_receive')
+stg3ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg3/QA_MVC/adh_send')
+baseFolder = Path('///cuaisilon/socappstgfile01/SOC_Share')
 testLocation = Path('test')
 
 # functions
