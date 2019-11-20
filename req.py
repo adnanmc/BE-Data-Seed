@@ -8,7 +8,7 @@ stg2DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg2/QA_MVC/adh_r
 stg2ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg2/QA_MVC/adh_send')
 stg3DropLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg3/QA_MVC/adh_receive')
 stg3ReceiveLocation = Path('//cuaisilon/socappstgfile01/SOC_Share/Stg3/QA_MVC/adh_send')
-baseFolder = Path('///cuaisilon/socappstgfile01/SOC_Share')
+baseFolder = Path('//cuaisilon/socappstgfile01/SOC_Share')
 testLocation = Path('test')
 
 # functions
