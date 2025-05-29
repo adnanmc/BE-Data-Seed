@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gate Check Goal Calculator</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 30px;
+            font-size: 2em;
+            font-weight: 600;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+
+        .input-group label {
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .input-group input[type="number"]:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .result h2 {
+            color: #28a745;
+            font-size: 1.8em;
+            font-weight: 600;
+        }
+
+        .result span {
+            font-size: 1.2em;
+            font-weight: 700;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gate Check Goal Calculator</h1>
+        <div class="input-group">
+            <label for="totalConfirmedCustomers">Total Confirmed Customers:</label>
+            <input type="number" id="totalConfirmedCustomers" value="0" min="0">
+        </div>
+        <div class="input-group">
+            <label for="totalStandbyCustomers">Total Standby Customers:</label>
+            <input type="number" id="totalStandbyCustomers" value="0" min="0">
+        </div>
+        <div class="input-group">
+            <label for="totalSeatCapacity">Total Seat Capacity:</label>
+            <input type="number" id="totalSeatCapacity" value="0" min="0">
+        </div>
+        <div class="input-group">
+            <label for="totalCarryOnBagEligibleCustomer">Carry-On Eligible Customers:</label>
+            <input type="number" id="totalCarryOnBagEligibleCustomer" value="0" min="0">
+        </div>
+        <div class="input-group">
+            <label for="gateCheckRatio">Gate Check Ratio:</label>
+            <input type="number" id="gateCheckRatio" value="0" step="0.01" min="0">
+        </div>
+        <div class="input-group">
+            <label for="aircraftDetailCount">Aircraft Detail Count:</label>
+            <input type="number" id="aircraftDetailCount" value="0" min="0">
+        </div>
+        <button id="calculateButton">Calculate Gate Check Goal</button>
+        <div class="result">
+            <h2>Gate Check Goal: <span id="gateCheckGoalResult">0.00</span></h2>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const totalConfirmedCustomersInput = document.getElementById('totalConfirmedCustomers');
+            const totalStandbyCustomersInput = document.getElementById('totalStandbyCustomers');
+            const totalSeatCapacityInput = document.getElementById('totalSeatCapacity');
+            const totalCarryOnBagEligibleCustomerInput = document.getElementById('totalCarryOnBagEligibleCustomer');
+            const gateCheckRatioInput = document.getElementById('gateCheckRatio');
+            const aircraftDetailCountInput = document.getElementById('aircraftDetailCount');
+            const calculateButton = document.getElementById('calculateButton');
+            const gateCheckGoalResult = document.getElementById('gateCheckGoalResult');
+
+            calculateButton.addEventListener('click', () => {
+                const totalConfirmedCustomers = parseFloat(totalConfirmedCustomersInput.value) || 0;
+                const totalStandbyCustomers = parseFloat(totalStandbyCustomersInput.value) || 0;
+                const totalSeatCapacity = parseFloat(totalSeatCapacityInput.value) || 0;
+                const totalCarryOnBagEligibleCustomer = parseFloat(totalCarryOnBagEligibleCustomerInput.value) || 0;
+                const gateCheckRatio = parseFloat(gateCheckRatioInput.value) || 0;
+                const aircraftDetailCount = parseFloat(aircraftDetailCountInput.value) || 0;
+
+                let totalLoadFactor = 0;
+                if (totalSeatCapacity > 0) {
+                    totalLoadFactor = Math.min(1.02, (totalConfirmedCustomers + totalStandbyCustomers) / totalSeatCapacity);
+                } else {
+                    totalLoadFactor = 0;
+                }
+
+                let gateCheckGoal = Math.max(0, (totalCarryOnBagEligibleCustomer * gateCheckRatio) - aircraftDetailCount) * 0.38 + (totalLoadFactor * 4);
+
+                gateCheckGoalResult.textContent = gateCheckGoal.toFixed(4); // Display with 4 decimal places
+            });
+        });
+    </script>
+</body>
+</html>
