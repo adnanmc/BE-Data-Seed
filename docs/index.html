@@ -136,6 +136,7 @@
         <button id="calculateButton">Calculate Gate Check Goal</button>
         <div class="result">
             <h2>Gate Check Goal: <span id="gateCheckGoalResult">0.00</span></h2>
+            <h2>Total Load Factor: <span id="totalLoadFactor">0.00</span></h2>
         </div>
     </div>
 
@@ -149,6 +150,7 @@
             const aircraftDetailCountInput = document.getElementById('aircraftDetailCount');
             const calculateButton = document.getElementById('calculateButton');
             const gateCheckGoalResult = document.getElementById('gateCheckGoalResult');
+            const totalLoadFactorResult = document.getElementById('totalLoadFactor');
 
             calculateButton.addEventListener('click', () => {
                 const totalConfirmedCustomers = parseFloat(totalConfirmedCustomersInput.value) || 0;
@@ -168,6 +170,7 @@
                 let gateCheckGoal = Math.max(0, (totalCarryOnBagEligibleCustomer * gateCheckRatio) - aircraftDetailCount) * 0.38 + (totalLoadFactor * 4);
 
                 gateCheckGoalResult.textContent = gateCheckGoal.toFixed(4); // Display with 4 decimal places
+                totalLoadFactorResult.textContent = totalLoadFactor.toFixed(4); // Display with 4 decimal places
             });
         });
     </script>
